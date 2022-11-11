@@ -9,9 +9,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "events": "^3.3.0",
+    "three": "^0.146.0",
     "vite": "^3.2.3"
-  },
-  "dependencies": {
-    "three": "^0.146.0"
   }
 }
