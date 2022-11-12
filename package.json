@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "events": "^3.3.0"
+    "events": "^3.3.0",
+    "gsap": "^3.11.3"
   }
 }
