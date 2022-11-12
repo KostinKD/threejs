@@ -23,7 +23,7 @@ export default class Experience{
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.resources = new Resources(assets)
-        this.words = new World()
+        this.world = new World()
 
         this.time.on("update", ()=>{
             this.update();
@@ -36,11 +36,13 @@ export default class Experience{
 
     update(){
         this.camera.update();
+        this.world.update()
         this.renderer.update()
     }
 
     resize(){
         this.camera.resize()
+        this.world.resize()
         this.renderer.resize()
     }
 }
