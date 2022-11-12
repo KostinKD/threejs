@@ -10,8 +10,19 @@ export default class Environment{
         this.resources = this.experience.resources
 
         this.setSunLight()
+        this.setAmbientLight()
     }
 
+    // AMBIENT LIGHT
+    setAmbientLight(){
+        this.ambientLight = new THREE.AmbientLight('#ffffff',0.4)
+        this.ambientLight.castShadow = true
+        this.ambientLight.receiveShadow = true
+
+        this.scene.add(this.ambientLight)
+    }
+
+    // SUN LIGHT
     setSunLight(){
         this.sunLight = new THREE.DirectionalLight('#ffffff', 3)
         this.sunLight.castShadow = true

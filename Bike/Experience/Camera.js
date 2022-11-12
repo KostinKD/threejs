@@ -1,6 +1,7 @@
 import Experience from "./Experience.js";
 import * as THREE from 'three'
 import {OrbitControls} from "three/addons/controls/OrbitControls.js";
+import scene from "three/addons/offscreen/scene.js";
 
 
 export default class Camera{
@@ -19,6 +20,7 @@ export default class Camera{
     perspectiveCamera(){
         this.perspectiveCamera = new THREE.PerspectiveCamera(35,this.sizes.aspect,0.1,100)
         this.scene.add(this.perspectiveCamera)
+        this.perspectiveCamera.position.z = 5
     }
 
     createOrthographicCamera(){
@@ -32,7 +34,15 @@ export default class Camera{
             100
         )
         this.scene.add(this.OrthographicCamera)
-        this.perspectiveCamera.position.z = 5
+
+        const size = 10;
+        const divisions = 10;
+
+        const gridHelper = new THREE.GridHelper(size,divisions)
+        this.scene.add(gridHelper)
+
+        const axesHelper = new THREE.AxesHelper(10)
+        this.scene.add(axesHelper)
     }
 
     setOrbitControls(){
