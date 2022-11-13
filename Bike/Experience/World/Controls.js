@@ -23,13 +23,16 @@ export default class Controls{
         console.log(this.room)
         this.timeline = new GSAP.timeline();
         this.timeline.to(this.room.position,{
-            x: this.sizes.width * 0.00094,
+            x: ()=> {
+                return this.sizes.width * 0.0017
+            },
             scrollTrigger:{
                 trigger: '.first-move',
                 markers: true,
                 start: 'top top',
                 end: 'bottom bottom',
                 scrub: 0.6,
+                invalidateOnRefresh: true
             }
         })
     }
