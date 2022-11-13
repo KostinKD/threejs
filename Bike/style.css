@@ -105,14 +105,38 @@ html,body{
   text-transform: uppercase;
 }
 
-.styleOne{
-
+.styleOne,
+.styleTwo,
+.styleThree{
+  position: absolute;
+  display: block;
+  width: 100%;
+  max-width: 278px;
+  height: 60px;
+  border: 1px solid var(--primary-pink);
+  transform-origin: left;
+  transform: skewY(-25deg);
 }
-.styleTwo{
 
+.styleOne{
+  top: 0px;
+}
+
+.styleTwo{
+  top: 80px;
 }
 .styleThree{
+  top: 80px;
+  transform: skewY(25deg);
+  background-color: var(--primary-pink);
+}
 
+.section-number{
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  color: var(--primary-pink);
+  font-size: 24px;
 }
 
 /*Hero section ---------------------------------------*/
