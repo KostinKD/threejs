@@ -49,6 +49,9 @@ svg{
   --color-green: var(--color-text-dark);
   --color-blue: var(--color-text-light);
 }
+
+
+
 /*EXPERIENCE ---------------------------------------*/
 
 
@@ -271,3 +274,35 @@ svg{
   color: var(--color-text);
 }
 
+
+
+
+
+.green-text{
+  color: var(--color-green);
+}
+.green-border{
+  border-color: var(--color-green);
+}
+.green-background{
+  background-color: var(--color-green);
+}
+.blue-text{
+  color: var(--color-blue);
+}
+.blue-border{
+  border-color: var(--color-blue);
+}
+.blue-background{
+  background-color: var(--color-blue);
+}
+
+
+
+/* MEDIA QUERIES*/
+
+@media(max-width: 968px){
+  .section {
+    width: 100%;
+  }
+}
