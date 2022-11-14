@@ -2,7 +2,7 @@ import Experience from "../Experience.js";
 import * as THREE from 'three'
 import scene from "three/addons/offscreen/scene.js";
 import GSAP from "gsap";
-
+import {RectAreaLight}  from "three";
 
 export default class Room{
     constructor() {
@@ -55,6 +55,22 @@ export default class Room{
                 })
             }
         });
+
+
+        const width = 0.5
+        const height = 0.7
+        const intensity = 1
+        const rectLight = new THREE.RectAreaLight(
+            0xffffff,
+            intensity,
+            width,
+            height
+        )
+        rectLight.position.set(7.68244,7,0.5)
+        rectLight.rotation.x =  -Math.PI / 2
+        rectLight.rotation.z =  Math.PI / 4
+        this.actualRoom.add(rectLight)
+
         this.scene.add(this.actualRoom)
         this.actualRoom.scale.set(0.11,0.11,0.11)
         // this.actualRoom.rotation.y = -Math.PI
