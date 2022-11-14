@@ -7,7 +7,7 @@ import EventEmitter from "events";
 import World from "./World/World.js";
 import Resources from "./Utils/Resources.js";
 import assets from "./Utils/assets.js";
-
+import Theme from "./Theme.js";
 export default class Experience{
     static instance
 
@@ -23,6 +23,7 @@ export default class Experience{
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.resources = new Resources(assets)
+        this.theme = new Theme()
         this.world = new World()
 
         this.time.on("update", ()=>{

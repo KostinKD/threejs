@@ -24,7 +24,7 @@ export default class Controls{
         this.timeline = new GSAP.timeline();
         this.timeline.to(this.room.position,{
             x: ()=> {
-                return this.sizes.width * 0.0017
+                return this.sizes.width * 0.0015
             },
             scrollTrigger:{
                 trigger: '.first-move',
