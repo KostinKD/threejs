@@ -2,6 +2,9 @@ import Experience from "../Experience.js";
 import * as THREE from 'three'
 import scene from "three/addons/offscreen/scene.js";
 import GSAP from "gsap";
+import GUI from "lil-gui";
+
+
 
 export default class Environment{
     constructor() {
@@ -9,12 +12,30 @@ export default class Environment{
         this.scene = this.experience.scene
         this.resources = this.experience.resources
 
+        this.gui = new GUI({container: document.querySelector('.hero-main')})
+        this.obj = {
+            colorObj: { r:0 , g:0 , b:0},
+            intensity: 3,
+        }
+
+        this.setGUI()
         this.setSunLight()
         // this.setAmbientLight()
         // this.setPointLight()
     }
 
 
+    setGUI(){
+        this.gui.addColor(this.obj, 'colorObj').onChange(()=>{
+            this.sunLight.color.copy(this.obj.colorObj)
+            this.ambientLight.color.copy(this.obj.colorObj)
+            console.log(this.obj.colorObj)
+        })
+        this.gui.add(this.obj, 'intensity', 0,10).onChange(()=> {
+            this.sunLight.intensity = this.obj.intensity
+            this.ambientLight.intensity = this.obj.intensity
+        })
+    }
     setPointLight(){
         this.pointLight = new THREE.PointLight('#ffffff', 1)
         this.pointLight.position.set(0, 1,0)
