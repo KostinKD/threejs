@@ -19,6 +19,10 @@ export default class Controls{
                 this.rectLight = child
             }
         })
+        this.circleFirst = this.experience.world.floor.circleFirst
+        this.circleSecond = this.experience.world.floor.circleSecond
+        this.circleThird = this.experience.world.floor.circleThird
+
         GSAP.registerPlugin(ScrollTrigger);
 
         this.setSmoothScroll()
@@ -253,6 +257,53 @@ export default class Controls{
                     //         // pinSpacing: false
                     //     }
                     // })
+                })
+
+            //    All animations
+
+                this.firstMoveTimeLine = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: '.first-move',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.6,
+                        invalidateOnRefresh: true
+                    }
+                }).to(this.circleFirst.scale, {
+                    x: 3,
+                    y: 3,
+                    z: 3
+                })
+
+                this.secondMoveTimeLine = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: '.second-move',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.6,
+                        invalidateOnRefresh: true
+                    }
+                }).to(this.circleSecond.scale, {
+                    x: 3,
+                    y: 3,
+                    z: 3
+                },'same')
+                    .to(this.room.position, {
+                    y: 0.7
+                }, 'same')
+
+                this.thirdMoveTimeLine = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: '.third-move',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.6,
+                        invalidateOnRefresh: true
+                    }
+                }).to(this.circleThird.scale, {
+                    x: 3,
+                    y: 3,
+                    z: 3
                 })
 
             //    Mini Platform Anim
