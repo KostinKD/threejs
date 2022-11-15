@@ -11,6 +11,7 @@ export default class Floor{
 
 
         this.setFloor()
+        this.setCircles();
 
 
     }
