@@ -60,18 +60,24 @@ export default class Room{
                 child.position.z = 8.83572
             }
 
-            if (child.name === 'Mailbox' ||
-                child.name === 'Lamp' ||
-                child.name === 'FloorFirst' ||
-                child.name === 'FloorSecond' ||
-                child.name === 'FloorThird' ||
-                child.name === 'Dirt' ||
-                child.name === 'Flower1' ||
-                child.name === 'Flower2'
-            ){
-                console.log(child)
-                child.scale.set(0,0,0)
+            // if (child.name === 'Mailbox' ||
+            //     child.name === 'Lamp' ||
+            //     child.name === 'FloorFirst' ||
+            //     child.name === 'FloorSecond' ||
+            //     child.name === 'FloorThird' ||
+            //     child.name === 'Dirt' ||
+            //     child.name === 'Flower1' ||
+            //     child.name === 'Flower2'
+            // ){
+            //     console.log(child)
+            //     child.scale.set(0,0,0)
+            // }
+
+            child.scale.set(0,0,0)
+            if(child.name==='Cube'){
+                child.scale.set(1,1,1)
             }
+
         });
 
 
