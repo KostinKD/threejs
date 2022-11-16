@@ -11,7 +11,6 @@ export default class Resources extends EventEmitter{
         this.renderer = this.experience.renderer
 
         this.assets = assets
-        console.log(this.assets)
 
         this.items = {}
 

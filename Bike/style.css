@@ -11,6 +11,10 @@ html,body{
   font-family: 'Montserrat', sans-serif;
   color: var(--text-black);
 }
+body{
+  overflow: hidden;
+}
+
 h1,
 section,
 p,
