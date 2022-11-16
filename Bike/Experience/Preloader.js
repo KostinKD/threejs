@@ -1,6 +1,7 @@
 import {EventEmitter} from "events";
 import Experience from "./Experience.js";
 import GSAP from 'gsap'
+import convert from "./Utils/convertDivsToSpan.js";
 
 export default class Preloader extends EventEmitter{
     constructor() {
@@ -25,6 +26,11 @@ export default class Preloader extends EventEmitter{
     }
 
     setAssets(){
+        convert(document.querySelector('.intro-text'))
+        convert(document.querySelector('.hero-main-title'))
+        convert(document.querySelector('.hero-main-description'))
+        convert(document.querySelector('.hero-second-subheading'))
+        convert(document.querySelector('.second-sub'))
         this.room = this.experience.world.room.actualRoom
         this.roomChildren = this.experience.world.room.roomChildren
 
@@ -46,7 +52,6 @@ export default class Preloader extends EventEmitter{
                     x: -1,
                     ease: 'power1.out',
                     duration: 0.7,
-                    onComplete: resolve,
                 })
             } else {
                 this.timeline.to(this.roomChildren.cube.scale, {
@@ -55,9 +60,15 @@ export default class Preloader extends EventEmitter{
                     z: 1.4,
                     ease: 'back.out(2.5)',
                     duration: 0.7,
-                    onComplete: resolve,
                 })
             }
+            this.timeline
+                .to('.intro-text .animatedis', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.2)',
+                    onComplete: resolve
+                })
         })
 
     }
@@ -141,7 +152,12 @@ export default class Preloader extends EventEmitter{
                     z: 1,
                     ease: 'back.out(2.2)',
                     duration: 0.5
-                }).to(this.roomChildren.chair.scale,{
+                }).set(this.roomChildren.mini_floor.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1
+                })
+                    .to(this.roomChildren.chair.scale,{
                     y: 1,
                     x: 1,
                     z: 1,
@@ -199,6 +215,7 @@ export default class Preloader extends EventEmitter{
     }
     async playIntro(){
         await this.firstIntro()
+        this.moveFlag = true
         this.scrollOnceEvent = this.onScroll.bind(this)
         this.touchStart = this.onTouch.bind(this)
         this.touchMove = this.onTouchMove.bind(this)
@@ -207,8 +224,36 @@ export default class Preloader extends EventEmitter{
         window.addEventListener('touchmove', this.touchMove)
     }
     async playSecondIntro(){
+        this.moveFlag = false
+        this.scaleFlag = true
         await this.secondIntro()
+        this.scaleFlag = false
         this.emit('enablecontrols')
+    }
+
+    move(){
+        if (this.device === 'desktop'){
+            this.room.position.set(-1,0,0)
+        } else {
+            this.room.position.set(0,0,-1)
+        }
+    }
+
+    scale(){
+        if (this.device === 'desktop'){
+            this.room.scale.set(0.11,0.11,0.11)
+        } else {
+            this.room.scale.set(0.07,0.07,0.07)
+        }
+    }
+    update(){
+        if (this.moveFlag){
+            this.move()
+        }
+
+        if (this.scaleFlag){
+            this.scale()
+        }
     }
 
 }
