@@ -9,6 +9,7 @@ import Resources from "./Utils/Resources.js";
 import assets from "./Utils/assets.js";
 import Theme from "./Theme.js";
 import Preloader from "./Preloader.js";
+import Controls from "./World/Controls.js";
 
 
 export default class Experience{
@@ -29,6 +30,10 @@ export default class Experience{
         this.theme = new Theme()
         this.world = new World()
         this.preloader = new Preloader()
+
+        this.preloader.on('enablecontrols', ()=>{
+            this.controls = new Controls()
+        })
 
         this.time.on("update", ()=>{
             this.update();

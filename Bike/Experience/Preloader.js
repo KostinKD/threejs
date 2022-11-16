@@ -66,7 +66,7 @@ export default class Preloader extends EventEmitter{
         return new Promise((resolve)=>{
             this.secondTimeline = new GSAP.timeline()
 
-            if (this.device === 'desktop') {
+            // if (this.device === 'desktop') {
                 this.secondTimeline.to(this.room.position, {
                     z: 0,
                     x: 0,
@@ -153,7 +153,7 @@ export default class Preloader extends EventEmitter{
                     duration: 1,
                     onComplete: resolve,
                 })
-            }
+            // }
             // else {
             //     this.secondTimeline.to(this.room.position, {
             //         z: 0,
@@ -208,6 +208,7 @@ export default class Preloader extends EventEmitter{
     }
     async playSecondIntro(){
         await this.secondIntro()
+        this.emit('enablecontrols')
     }
 
 }
