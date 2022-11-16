@@ -78,7 +78,12 @@ export default class Preloader extends EventEmitter{
             this.secondTimeline = new GSAP.timeline()
 
             // if (this.device === 'desktop') {
-                this.secondTimeline.to(this.room.position, {
+                this.secondTimeline.to('.intro-text .animatedis', {
+                    yPercent: 100,
+                    stagger: 0.07,
+                    ease: 'back.in(1.2)',
+                })
+                    .to(this.room.position, {
                     z: 0,
                     x: 0,
                     y: 0,
@@ -109,8 +114,25 @@ export default class Preloader extends EventEmitter{
                 }).to(this.roomChildren.cube.scale, {
                     x: 0,
                     y: 0,
-                    z: 0
-                }).to(this.roomChildren.aquarium.scale,{
+                    z: 0,
+                    duration: 1
+                },'introtext').to('.hero-main-title .animatedis', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.2)',
+                },'introtext').to('.hero-main-description .animatedis', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.2)',
+                },'introtext').to('.first-sub .animatedis', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.2)',
+                },'introtext').to('.second-sub .animatedis', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.2)',
+                }, 'introtext').to(this.roomChildren.aquarium.scale,{
                     x: 1,
                     y: 1,
                     z: 1,
@@ -194,7 +216,6 @@ export default class Preloader extends EventEmitter{
         }
     }
     onTouch(e){
-        console.log(e)
         this.initialY = e.touches[0].clientY
     }
     onTouchMove(e){
@@ -214,6 +235,7 @@ export default class Preloader extends EventEmitter{
         window.removeEventListener('touchmove', this.touchMove)
     }
     async playIntro(){
+        this.scaleFlag = true
         await this.firstIntro()
         this.moveFlag = true
         this.scrollOnceEvent = this.onScroll.bind(this)
@@ -225,7 +247,6 @@ export default class Preloader extends EventEmitter{
     }
     async playSecondIntro(){
         this.moveFlag = false
-        this.scaleFlag = true
         await this.secondIntro()
         this.scaleFlag = false
         this.emit('enablecontrols')
@@ -240,6 +261,8 @@ export default class Preloader extends EventEmitter{
     }
 
     scale(){
+        this.roomChildren.rectLight.width = 0
+        this.roomChildren.rectLight.height = 0
         if (this.device === 'desktop'){
             this.room.scale.set(0.11,0.11,0.11)
         } else {
