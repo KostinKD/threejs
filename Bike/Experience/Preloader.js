@@ -40,7 +40,17 @@ export default class Preloader extends EventEmitter{
 
         return new Promise((resolve)=>{
             this.timeline = new GSAP.timeline()
-
+            this.timeline.set('.animatedis', {
+                y:0,
+                yPercent: 100
+            })
+            this.timeline.to('.preloader', {
+                opacity: 0,
+                delay: 1,
+                onComplete: ()=>{
+                    document.querySelector('.preloader').classList.add('hidden')
+                }
+            })
             if (this.device === 'desktop') {
                 this.timeline.to(this.roomChildren.cube.scale, {
                     x: 1.4,
@@ -64,7 +74,7 @@ export default class Preloader extends EventEmitter{
             }
             this.timeline
                 .to('.intro-text .animatedis', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07,
                     ease: 'back.out(1.2)',
                     onComplete: resolve
@@ -117,19 +127,19 @@ export default class Preloader extends EventEmitter{
                     z: 0,
                     duration: 1
                 },'introtext').to('.hero-main-title .animatedis', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07,
                     ease: 'back.out(1.2)',
                 },'introtext').to('.hero-main-description .animatedis', {
-                    yPercent: -100,
+                    yPercent: -0,
                     stagger: 0.07,
                     ease: 'back.out(1.2)',
                 },'introtext').to('.first-sub .animatedis', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07,
                     ease: 'back.out(1.2)',
                 },'introtext').to('.second-sub .animatedis', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07,
                     ease: 'back.out(1.2)',
                 }, 'introtext').to('.arrow-svg-wrapper', {

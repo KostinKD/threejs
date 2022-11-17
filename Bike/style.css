@@ -70,6 +70,10 @@ svg{
   height: 100%;
 }
 
+.hidden{
+  display: none;
+}
+
 /* PRELOADER FIRST VIEW*/
 
 
@@ -77,7 +81,9 @@ svg{
   background-color: var(--color-background-light);
   width: 100%;
   height: 100%;
+  opacity: 1;
   z-index: 99999;
+  position: fixed;
 }
 
 .preloader-wrapper{
@@ -97,12 +103,27 @@ svg{
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  margin: 6px;
   background-color: var(--color-pink-light);
   animation: load 1s ease-in-out infinite;
 }
+.circle:nth-child(2){
+  animation-delay: 0.1s;
+}
+.circle:nth-child(3){
+  animation-delay: 0.3s;
+}
 
 @keyframes load {
-
+  0%{
+    transform: translateY(0);
+  }
+  20%{
+    transform: translateY(-12px);
+  }
+  40%{
+    transform: translateY(0);
+  }
 }
 /*Page Itself ---------------------------------------*/
 .page{
@@ -123,11 +144,15 @@ svg{
   transform: translateY(100%);
 }
 .intro-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
   font-weight: 500;
   font-size: 16px;
+  color: var(--color-text);
   transform: translate(-50%, -50%);
 }
 
@@ -135,6 +160,7 @@ svg{
   position: absolute;
   top: 90%;
   left: 50%;
+  color: var(--color-text);
   opacity: 0;
   transform: translate(-50%, -50%);
   animation: bounce 0.5s ease-in alternate infinite;
@@ -409,5 +435,23 @@ svg{
   .progress-bar-wrapper-left{
     right: 0;
     left: auto;
+  }
+  .hero-main{
+    bottom: 120px;
+  }
+  .hero-second{
+    top: 160px;
+  }
+  .hero-wrapper{
+    width: calc(100% - 60px);
+  }
+  .hero-main-title{
+    font-size: 32px;
+  }
+  .hero-main-description{
+    font-size: 18px;
+  }
+  .hero-second-subheading{
+    font-size: 18px;
   }
 }
