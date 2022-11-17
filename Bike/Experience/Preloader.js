@@ -132,7 +132,12 @@ export default class Preloader extends EventEmitter{
                     yPercent: -100,
                     stagger: 0.07,
                     ease: 'back.out(1.2)',
-                }, 'introtext').to(this.roomChildren.aquarium.scale,{
+                }, 'introtext').to('.arrow-svg-wrapper', {
+                    opacity: 1
+                }, 'same').to('.toggle-bar', {
+                    opacity: 1
+                }, 'same')
+                    .to(this.roomChildren.aquarium.scale,{
                     x: 1,
                     y: 1,
                     z: 1,
